@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -12,6 +13,8 @@ namespace TNA
     {
         static void Main(string[] args)
         {
+            RNT source = new RNT(new FileInfo("init.txt"),5,2,20); 
+
             string fileText = File.ReadAllText("init.txt");
 
             int interval = 0;
@@ -46,15 +49,14 @@ namespace TNA
 
             DataTable dt = new DataTable();
 
+            
 
-
-            result = GetNumeros(interval, numbersLimit,valueLimit, array);
+            result = GetNumeros(interval, numbersLimit, valueLimit, array);
 
             Console.WriteLine(result.Aggregate((a, b) => $"{a}{Environment.NewLine}{b}"));
 
             Console.ReadKey();
-
-
+ 
 
 
 
@@ -63,7 +65,7 @@ namespace TNA
 
         }
 
-        private static List<string> GetNumeros(int interval,int numbersLimit, int valueLimit, char[]array, int index=0, List<string> numbersList = null)
+        private static List<string> GetNumeros(int interval, int numbersLimit, int valueLimit, char[] array, int index = 0, List<string> numbersList = null)
         {
 
             int newIndex = index + interval;
