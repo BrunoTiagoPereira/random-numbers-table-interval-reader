@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TNA", "TNA\TNA.csproj", "{C2260DA8-46D1-47C7-9B41-2DEF03B13BD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interface", "Interface\Interface.csproj", "{CF8C30FB-49C9-4ECA-84FD-65792809B794}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{860BCE07-F313-47FE-862B-D4DFDE6595B0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C2260DA8-46D1-47C7-9B41-2DEF03B13BD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2260DA8-46D1-47C7-9B41-2DEF03B13BD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2260DA8-46D1-47C7-9B41-2DEF03B13BD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2260DA8-46D1-47C7-9B41-2DEF03B13BD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF8C30FB-49C9-4ECA-84FD-65792809B794}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF8C30FB-49C9-4ECA-84FD-65792809B794}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF8C30FB-49C9-4ECA-84FD-65792809B794}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF8C30FB-49C9-4ECA-84FD-65792809B794}.Release|Any CPU.Build.0 = Release|Any CPU
+		{860BCE07-F313-47FE-862B-D4DFDE6595B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{860BCE07-F313-47FE-862B-D4DFDE6595B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{860BCE07-F313-47FE-862B-D4DFDE6595B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{860BCE07-F313-47FE-862B-D4DFDE6595B0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FAB6CD9A-A5B8-49C0-A310-1B0F24C1DAC3}
+	EndGlobalSection
+EndGlobal
