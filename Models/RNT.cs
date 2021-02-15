@@ -18,10 +18,13 @@ namespace Models
         /// <summary>
         /// Amount of numbers to take
         /// </summary>
-        public int NumbersAmount { get; set; }
+        public int NumbersLimitAmount { get; set; }
 
         public int Interval { get; set; }
         public int ValueLimit { get; set; }
+
+
+        public static event EventHandler<int> OnPopulate;
 
         /// <summary>
         /// Constructor for the Random Numbers Table
@@ -33,7 +36,7 @@ namespace Models
         public RNT(FileInfo file, int numbersAmount, int interval, int valueLimit)
         {
 
-            
+
 
             if (!File.Exists(file.FullName)) { throw new FileNotFoundException("The specified file doesn't exists."); }
 
@@ -45,13 +48,13 @@ namespace Models
 
             SourceTable = new DataTable();
 
-            NumbersAmount = numbersAmount;
+            NumbersLimitAmount = numbersAmount;
 
             Interval = interval;
 
             ValueLimit = valueLimit;
 
-           
+
 
             PopulateSourceTable(file);
 
@@ -81,12 +84,14 @@ namespace Models
 
             List<string> fileLines = GetFileLines(file);
 
+            OnPopulate?.Invoke(this, fileLines.Count);
+
             int maxLineLength = fileLines.Max(line => line.ToArray().Length);
 
             char[] fileLineSplit;
 
             //Add enough columns to source table
-            for (int i = 0; i < maxLineLength; i++) SourceTable.Columns.Add(new DataColumn(i.ToString(), typeof(int)));
+            for (int i = 0; i < maxLineLength; i++) SourceTable.Columns.Add(new DataColumn(i.ToString(), typeof(string)));
 
 
 
@@ -98,7 +103,7 @@ namespace Models
                 fileLineSplit = fileLines[i].ToArray();
 
                 dr.ItemArray = fileLineSplit
-                    .Select(num => int.Parse(num.ToString()))
+                    .Select(num => num.ToString())
                     .Cast<object>()
                     .ToArray();
 
@@ -132,12 +137,65 @@ namespace Models
 
         public List<int> GetNumbersList()
         {
-
+            return RecursiveSearch();
         }
 
-        private List<int> RecursiveSearch()
+        public List<int> GetNumbersList(int rowIndex, int columnIndex)
         {
 
+            if (rowIndex > SourceTable.Rows.Count-1) return null;
+            if (columnIndex > SourceTable.Columns.Count-1) return null;
+
+
+            return RecursiveSearch(rowIndex,columnIndex);
         }
+
+        public List<int> GetNumbersList(int columnIndex)
+        {
+
+            if (columnIndex > SourceTable.Columns.Count - 1) return null;
+
+
+            return RecursiveSearch(columnIndex);
+        }
+
+        public List<int> GetNumbersList(byte rowIndex)
+        {
+
+            if (rowIndex > SourceTable.Rows.Count - 1) return null;
+
+
+            return RecursiveSearch(rowIndex);
+        }
+
+        private List<int> RecursiveSearch(int rowIndex = 0, int columnIndex = 0, List<int> result = null)
+        {
+            if (result == null) result = new List<int>();
+
+            if (result.Count == NumbersLimitAmount) return result;
+
+            StringBuilder numberResult = new StringBuilder();
+
+            for (int i = 0; i < Interval; i++)
+            {
+
+                if (SourceTable.Columns.Count == columnIndex)
+                {
+                    columnIndex = 0;
+                    rowIndex += 1;
+                }
+
+                if (SourceTable.Rows.Count == rowIndex) rowIndex = 0;
+
+                numberResult.Append(SourceTable.Rows[rowIndex][columnIndex]);
+
+                columnIndex++;
+            }
+
+            if (int.Parse(numberResult.ToString()) <= ValueLimit) result.Add(int.Parse(numberResult.ToString()));
+
+            return RecursiveSearch(rowIndex,columnIndex,result);
+        }
+
     }
 }

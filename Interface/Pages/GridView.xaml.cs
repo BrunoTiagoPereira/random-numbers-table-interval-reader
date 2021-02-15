@@ -1,6 +1,4 @@
-﻿using Interface.Interfaces;
-using Interface.Pages;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,28 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Interface
+namespace Interface.Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for GridView.xaml
     /// </summary>
-    public partial class MainWindow : Window, IFrameNavigation
+    public partial class GridView : Page
     {
-
-
-        public Frame Frame{ get; set; }
-
-        public MainWindow()
+        public GridView()
         {
             InitializeComponent();
-
-            Frame = MainFrame; 
-            
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Navigate(new MenuView(this));
         }
     }
 }

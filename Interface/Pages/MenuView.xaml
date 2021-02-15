@@ -1,0 +1,75 @@
+﻿<Page x:Class="Interface.Pages.MenuView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Interface.Pages"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Menu"
+      Loaded="Page_Loaded">
+
+    <Grid Background="#7FC2E2F5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="80*" />
+        </Grid.RowDefinitions>
+
+
+        <TextBlock
+            Grid.Row="0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontFamily="./Content/Fonts/Nunito-ExtraLight.ttf"
+            FontSize="25">
+            RNT Numbers Generator
+        </TextBlock>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60*" />
+                <RowDefinition Height="40*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel
+                Margin="30,0,30,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+                <TextBox
+                    Width="200"
+                    Height="40"
+                    Margin="0,0,20,0"
+                    materialDesign:HintAssist.Hint="Interval"
+                    BorderBrush="#4B7BF5"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    Text="{Binding Interval}" />
+                <TextBox
+                    Width="200"
+                    Height="40"
+                    Margin="0,0,20,0"
+                    materialDesign:HintAssist.Hint="Numbers Amount"
+                    BorderBrush="#4B7BF5"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    Text="{Binding NumbersAmount}" />
+                <TextBox
+                    Width="200"
+                    Height="40"
+                    Margin="0,0,20,0"
+                    materialDesign:HintAssist.Hint="Value Limit"
+                    BorderBrush="#4B7BF5"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    Text="{Binding ValueLimit}" />
+
+
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 0 50">
+                <Button  Width="170" Style="{StaticResource MaterialDesignRaisedLightButton}" Content="Start" Background="#79A9F5" BorderBrush="#79A9F5" Foreground="#BFFFFFFF" />
+            </StackPanel>
+        </Grid>
+
+
+    </Grid>
+</Page>

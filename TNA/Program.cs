@@ -13,7 +13,17 @@ namespace TNA
     {
         static void Main(string[] args)
         {
-            RNT source = new RNT(new FileInfo("init.txt"),5,2,20); 
+
+            RNT.OnPopulate += Source_OnPopulate;
+
+            RNT source = new RNT(new FileInfo("init.txt"),50,4,1050);
+
+           
+
+            List<int> teste = source.GetNumbersList();
+
+
+           
 
             string fileText = File.ReadAllText("init.txt");
 
@@ -63,6 +73,11 @@ namespace TNA
 
 
 
+        }
+
+        private static void Source_OnPopulate(object sender, int e)
+        {
+            Console.WriteLine(e);
         }
 
         private static List<string> GetNumeros(int interval, int numbersLimit, int valueLimit, char[] array, int index = 0, List<string> numbersList = null)

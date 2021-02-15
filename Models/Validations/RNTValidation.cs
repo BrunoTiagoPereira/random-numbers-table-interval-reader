@@ -21,6 +21,38 @@ namespace Models.Validations
             RuleFor(rnt => rnt)
                 .Must(rnt => HasValidInterval(rnt))
                 .WithMessage("The interval must be less than the numbers amount in table");
+
+            RuleFor(rnt => rnt)
+                .Must(rnt => HasValidNumberLimit(rnt))
+                .WithMessage("The interval must be less than the digit count of the value limit");
+
+            RuleFor(rnt => rnt)
+                .Must(rnt => !HasNegativeParameters(rnt))
+                .WithMessage("Interval, value limit and numbers limit amount must be positive");
+
+
+        }
+
+        private bool HasNegativeParameters(RNT rnt)
+        {
+            return (rnt.Interval <= 0) && (rnt.ValueLimit <= 0) && (rnt.NumbersLimitAmount <= 0);
+        }
+
+        private bool HasValidNumberLimit(RNT rnt)
+        {
+
+            StringBuilder numberResult = new StringBuilder();
+
+            numberResult.Append(1);
+            for (int i = 1; i < rnt.Interval; i++)
+            {
+                numberResult.Append(0);
+            }
+
+
+            if (rnt.ValueLimit < int.Parse(numberResult.ToString())) return false;
+
+            return true;
         }
 
         private bool HasValidInterval(RNT rnt)
@@ -37,14 +69,14 @@ namespace Models.Validations
 
         private bool IsValidTable(RNT rnt)
         {
-            bool isValid = true;
+
 
             for (int i = 0; i < rnt.SourceTable.Rows.Count; i++)
             {
-                isValid = rnt.SourceTable.Rows[i].ItemArray.Any(data => !Regex.IsMatch(@"\d{1}", data.ToString()));
+                if (rnt.SourceTable.Rows[i].ItemArray.Any(data => Regex.IsMatch(@"[A-Za-z]", data.ToString()))) return false;
             }
 
-            return isValid;
+            return true;
 
         }
     }

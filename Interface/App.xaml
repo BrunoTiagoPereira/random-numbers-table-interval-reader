@@ -4,5 +4,21 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Interface"
     StartupUri="MainWindow.xaml">
-    <Application.Resources />
+    <Application.Resources >
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="LightBlue" />
+            <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="#4B7BF5" />
+            <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#4B7BF5" />
+            <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="#4B7BF5" />
+            <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="#4B7BF5" />
+            <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="White" />
+        
+        </ResourceDictionary>
+    </Application.Resources>
 </Application>
