@@ -11,7 +11,8 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     Loaded="OnLoad"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Unloaded="UnLoad">
 
     <Grid>
         <Grid Background="#7FC2E2F5" Visibility="{Binding IsReady, Converter={cvt:BooleanToVisibilityConverter}}">
@@ -27,23 +28,7 @@
                 FontFamily="./Content/Fonts/Nunito-ExtraLight.ttf"
                 FontSize="25"
                 Text="Resultado" />
-            <!--<DataGrid
-                    Grid.Row="1"
-                    Margin="0,0,0,0"
-                    AutoGenerateColumns="False"
-
-                    BorderThickness="3"
-                    CanUserAddRows="False"
-                    CanUserSortColumns="True"
-
-                    IsReadOnly="True"
-                    ItemsSource="{Binding NumbersResult}"
-                    ScrollViewer.CanContentScroll="True">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Width="100*"  Binding="{Binding}" Header="Numbers"  />
-
-                </DataGrid.Columns>
-            </DataGrid>-->
+          
             <ListView
                 Grid.Row="1"
                 HorizontalContentAlignment="Center"
@@ -67,19 +52,24 @@
                     IsEnabled="{Binding IsReady}"
                     Style="{StaticResource MaterialDesignRaisedLightButton}" />
                 <Button
-                    Width="170"
-                    Background="#79A9F5"
-                    BorderBrush="#79A9F5"
-                    Click="ExportarExcel"
-                    
-                    Foreground="#BFFFFFFF"
-                    IsEnabled="{Binding IsReady}"
-                    Style="{StaticResource MaterialDesignRaisedLightButton}" >
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <TextBlock Margin="0 0 10 0">Exportar</TextBlock>
-                        <md:PackIcon Kind="FileDocumentOutline" Width="20" Height="20"></md:PackIcon>
+                Width="170"
+                Background="#79A9F5"
+                BorderBrush="#79A9F5"
+                Click="Export"
+                Foreground="#BFFFFFFF"
+                Style="{StaticResource MaterialDesignRaisedLightButton}">
+                    <StackPanel
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
+                        <TextBlock Margin="0,0,10,0">Exportar</TextBlock>
+                        <md:PackIcon
+                        Width="20"
+                        Height="20"
+                        Kind="Export" />
                     </StackPanel>
                 </Button>
+
             </StackPanel>
 
         </Grid>
@@ -103,6 +93,7 @@
                 FontFamily="./Content/Fonts/Nunito-ExtraLight.ttf"
                 FontSize="20"
                 Text="Carregando Resultado..." />
+            
         </StackPanel>
     </Grid>
 </Page>

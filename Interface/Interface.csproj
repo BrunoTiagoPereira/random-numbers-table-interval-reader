@@ -71,6 +71,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\BooleanToVisibilityConverterExtension.cs" />
+    <Compile Include="Exporting\ExportInterface.cs" />
     <Compile Include="Mappers\MapperUtility.cs" />
     <Compile Include="Pages\ExportView.xaml.cs">
       <DependentUpon>ExportView.xaml</DependentUpon>

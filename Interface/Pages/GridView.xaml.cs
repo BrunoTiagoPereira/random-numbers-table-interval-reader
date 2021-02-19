@@ -1,4 +1,5 @@
-﻿using Interface.Interfaces;
+﻿using Interface.Exporting;
+using Interface.Interfaces;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -28,8 +29,6 @@ namespace Interface.Pages
     public partial class GridView : Page
     {
         private BackgroundWorker _bg;
-
-        private BackgroundWorker _export;
 
         public IFrameNavigation FrameWindow { get; set; }
         public RNT Rnt { get; set; }
@@ -66,7 +65,7 @@ namespace Interface.Pages
         #endregion
 
 
-        public GridView(IFrameNavigation frameWindow, RNT rnt)
+        public GridView(IFrameNavigation frameWindow, RNT rnt)  
         {
             InitializeComponent();
             InstanceBackgroundWorker();
@@ -89,10 +88,7 @@ namespace Interface.Pages
             _bg.RunWorkerCompleted += WorkerRunWorkerCompleted;
             _bg.WorkerReportsProgress = true;
 
-            _export = new BackgroundWorker();
-            _export.DoWork += ExportDoWork;
-            _export.RunWorkerCompleted += ExportRunWorkerCompleted;
-            _export.WorkerReportsProgress = true;
+    
 
         }
 
@@ -114,57 +110,21 @@ namespace Interface.Pages
             IsShowingProgress = false;
             IsReady = true;
         }
-        private void ExportarExcel(object sender, RoutedEventArgs e)
+
+        private void Export(object sender, RoutedEventArgs e)
         {
-            
-            
-
-            using (SaveFileDialog sfd = new SaveFileDialog())
-            {
-                
-                sfd.Title = "Salvar arquivo txt";
-                sfd.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-                sfd.FilterIndex = 2;
-                sfd.RestoreDirectory = true;
-
-
-                if (sfd.ShowDialog() == DialogResult.OK)
-                {
-                    try
-                    {
-                        string fileText = this.NumbersResult.
-                            Select(num => num.ToString())
-                            .Aggregate((a, b) => $"{a}{Environment.NewLine}{b}");
-
-                        File.WriteAllText(sfd.FileName, fileText);
-                    }
-                    catch (Exception ex)
-                    {
-
-                        throw;
-                    }
-
-                }
-            }
-
+            FrameWindow.Frame.Navigate(new ExportView(FrameWindow, NumbersResult.ToList() ));
         }
-
-
-        private void ExportDoWork(object sender, DoWorkEventArgs e)
-        {
-            
-        }
-
-        private void ExportRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-
-        }
-
         private void GoBack(object sender, RoutedEventArgs e)
         {
             FrameWindow.Frame.Navigate(new MenuView(FrameWindow));
         }
 
-        
+        private void UnLoad(object sender, RoutedEventArgs e)
+        {
+            Rnt = null;
+            NumbersResult = null;
+            _bg.Dispose();
+        }
     }
 }

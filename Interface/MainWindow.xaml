@@ -9,6 +9,7 @@
     Width="800"
     Height="450"
     Loaded="Window_Loaded"
+    Closed="Window_Closed"  
     mc:Ignorable="d">
     <Grid>
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" />

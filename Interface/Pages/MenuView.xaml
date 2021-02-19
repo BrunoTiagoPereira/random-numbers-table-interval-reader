@@ -10,7 +10,8 @@
     Title="Menu"
     d:DesignHeight="450"
     d:DesignWidth="800"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Unloaded="UnLoad">
     <Page.Resources>
         <ControlTemplate x:Key="ErrorTemplate">
             <StackPanel Orientation="Vertical">
@@ -102,12 +103,12 @@
                         Text="{Binding MenuModel.NumbersAmount, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                         Validation.ErrorTemplate="{StaticResource ErrorTemplate}" />
                     <TextBox
-                        MaxLength="9"
                         Width="200"
                         Height="40"
                         Margin="0,0,0,0"
                         materialDesign:HintAssist.Hint="Valor limite"
                         BorderBrush="#4B7BF5"
+                        MaxLength="9"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                         Text="{Binding MenuModel.ValueLimit, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                         Validation.ErrorTemplate="{StaticResource ErrorTemplate}" />

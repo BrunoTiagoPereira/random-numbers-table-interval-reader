@@ -38,6 +38,8 @@ namespace Interface.Pages
 
         private BackgroundWorker _bg;
 
+
+        #region IsFileSelectedProperty
         public bool IsFileSelected
         {
             get { return (bool)GetValue(IsFileSelectedProperty); }
@@ -47,7 +49,9 @@ namespace Interface.Pages
         // Using a DependencyProperty as the backing store for IsFileSelected.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty IsFileSelectedProperty =
             DependencyProperty.Register("IsFileSelected", typeof(bool), typeof(MenuView), new PropertyMetadata(false));
+        #endregion
 
+        #region IsMainGridEnableProperty
         public bool IsMainGridEnable
         {
             get { return (bool)GetValue(IsMainGridEnableProperty); }
@@ -58,8 +62,9 @@ namespace Interface.Pages
         public static readonly DependencyProperty IsMainGridEnableProperty =
             DependencyProperty.Register("IsMainGridEnable", typeof(bool), typeof(MenuView), new PropertyMetadata(true));
 
+        #endregion
 
-
+        #region IsShowingProgressProperty
         public bool IsShowingProgress
         {
             get { return (bool)GetValue(IsShowingProgressProperty); }
@@ -69,6 +74,8 @@ namespace Interface.Pages
         // Using a DependencyProperty as the backing store for IsShowingProgress.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty IsShowingProgressProperty =
             DependencyProperty.Register("IsShowingProgress", typeof(bool), typeof(MenuView), new PropertyMetadata(false));
+    
+        #endregion
 
 
 
@@ -196,5 +203,10 @@ namespace Interface.Pages
             FrameWindow.Frame.Navigate(new GridView(FrameWindow, rnt));
         }
 
+        private void UnLoad(object sender, RoutedEventArgs e)
+        {
+            MenuModel = null;
+            _bg.Dispose();
+        }
     }
 }
