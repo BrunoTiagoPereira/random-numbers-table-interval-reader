@@ -23,7 +23,6 @@ namespace Models
         public int Interval { get; set; }
         public int ValueLimit { get; set; }
 
-
         public static event EventHandler<int> OnPopulate;
 
         /// <summary>
@@ -35,8 +34,6 @@ namespace Models
         /// <param name="valueLimit">Value limit to fetch numbers</param>
         public RNT(FileInfo file, int numbersAmount, int interval, int valueLimit)
         {
-
-
 
             if (!File.Exists(file.FullName)) { throw new FileNotFoundException("The specified file doesn't exists."); }
 

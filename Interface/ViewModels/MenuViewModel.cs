@@ -1,6 +1,10 @@
-﻿using System;
+﻿using FluentValidation.Results;
+using Interface.Validations;
+using Models.Validations;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,25 +19,30 @@ namespace Interface.ViewModels
             {
                 string error = string.Empty;
 
-                switch (columnName)
+                MenuViewModelValidation validator = new MenuViewModelValidation();
+
+                ValidationResult result = validator.Validate(this);
+
+                if (!result.IsValid&& result.Errors.Any(err => err.PropertyName == columnName))
                 {
-                    default:
-                        break;
+                    error = result.Errors.Where(err => err.PropertyName == columnName).Select(err => err.ErrorMessage).FirstOrDefault();
                 }
+
 
                 return error;
             }
         }
+        private FileInfo _selectedFile;
+        public FileInfo SelectedFile { get => _selectedFile; set => _selectedFile = value; }
 
+        private string _valueLimit;
+        public string ValueLimit { get => _valueLimit; set => _valueLimit = value; }
 
-        private int _valueLimit;
-        public int ValueLimit { get; set; }
+        private string _interval;
+        public string Interval { get => _interval; set => _interval = value; }
 
-        private int _interval;
-        public int Interval { get; set; }
-
-        private int _numbersAmount;
-        public int NumbersAmount { get; set; }
+        private string _numbersAmount;
+        public string NumbersAmount { get => _numbersAmount; set => _numbersAmount = value; }
 
         public string Error => string.Empty;
 

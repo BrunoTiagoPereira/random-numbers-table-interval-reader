@@ -16,26 +16,36 @@ namespace Models.Validations
         {
             RuleFor(rnt => rnt)
                 .Must(rnt => IsValidTable(rnt))
-                .WithMessage("The file data must be numbers");
+                .WithMessage("A tabela deve ter apenas de números");
 
             RuleFor(rnt => rnt)
                 .Must(rnt => HasValidInterval(rnt))
-                .WithMessage("The interval must be less than the numbers amount in table");
+                .WithMessage("O intervalo deve ser menor que a quantidade de números na tabela");
 
             RuleFor(rnt => rnt)
                 .Must(rnt => HasValidNumberLimit(rnt))
-                .WithMessage("The interval must be less than the digit count of the value limit");
+                .WithMessage("O intervalo deve ser menor que a quantidade de algarismos do valor limite");
 
-            RuleFor(rnt => rnt)
-                .Must(rnt => !HasNegativeParameters(rnt))
-                .WithMessage("Interval, value limit and numbers limit amount must be positive");
+            RuleFor(prop => prop)
+                  .Must(rnt => !HasNegativeParameters(rnt))
+                  .WithMessage("intervalo, valor limite e quantidade de números devem ser positivos");
 
 
         }
 
-        private bool HasNegativeParameters(RNT rnt)
+
+
+        private bool IsValidTable(RNT rnt)
         {
-            return (rnt.Interval <= 0) && (rnt.ValueLimit <= 0) && (rnt.NumbersLimitAmount <= 0);
+
+
+            for (int i = 0; i < rnt.SourceTable.Rows.Count; i++)
+            {
+                if (rnt.SourceTable.Rows[i].ItemArray.Any(data => Regex.IsMatch(@"[A-Za-z]", data.ToString()))) return false;
+            }
+
+            return true;
+
         }
 
         private bool HasValidNumberLimit(RNT rnt)
@@ -44,7 +54,7 @@ namespace Models.Validations
             StringBuilder numberResult = new StringBuilder();
 
             numberResult.Append(1);
-            for (int i = 1; i < rnt.Interval; i++)
+            for (int i = 1; i < rnt.Interval.ToString().Length; i++)
             {
                 numberResult.Append(0);
             }
@@ -64,20 +74,12 @@ namespace Models.Validations
             }
 
             return numbersAmount > rnt.Interval;
-            
+
         }
 
-        private bool IsValidTable(RNT rnt)
+        private bool HasNegativeParameters(RNT rnt)
         {
-
-
-            for (int i = 0; i < rnt.SourceTable.Rows.Count; i++)
-            {
-                if (rnt.SourceTable.Rows[i].ItemArray.Any(data => Regex.IsMatch(@"[A-Za-z]", data.ToString()))) return false;
-            }
-
-            return true;
-
+            return (rnt.Interval <= 0) && (rnt.ValueLimit <= 0) && (rnt.NumbersLimitAmount <= 0);
         }
     }
 }

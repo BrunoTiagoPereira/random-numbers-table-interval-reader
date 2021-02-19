@@ -8,11 +8,9 @@
     Title="MainWindow"
     Width="800"
     Height="450"
-    mc:Ignorable="d"
-    Loaded="Window_Loaded">
-    <Grid >
-        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden">
-            
-        </Frame>
+    Loaded="Window_Loaded"
+    mc:Ignorable="d">
+    <Grid>
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>

@@ -1,14 +1,108 @@
-﻿<Page x:Class="Interface.Pages.GridView"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Interface.Pages"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="GridView">
+﻿<Page
+    x:Class="Interface.Pages.GridView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cvt="clr-namespace:Interface.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Interface.Pages"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    Title="GridView"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    Loaded="OnLoad"
+    mc:Ignorable="d">
 
     <Grid>
-        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">Grid View</TextBlock>
+        <Grid Background="#7FC2E2F5" Visibility="{Binding IsReady, Converter={cvt:BooleanToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20*" />
+                <RowDefinition Height="60*" />
+                <RowDefinition Height="20*" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Grid.Row="0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontFamily="./Content/Fonts/Nunito-ExtraLight.ttf"
+                FontSize="25"
+                Text="Resultado" />
+            <!--<DataGrid
+                    Grid.Row="1"
+                    Margin="0,0,0,0"
+                    AutoGenerateColumns="False"
+
+                    BorderThickness="3"
+                    CanUserAddRows="False"
+                    CanUserSortColumns="True"
+
+                    IsReadOnly="True"
+                    ItemsSource="{Binding NumbersResult}"
+                    ScrollViewer.CanContentScroll="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="100*"  Binding="{Binding}" Header="Numbers"  />
+
+                </DataGrid.Columns>
+            </DataGrid>-->
+            <ListView
+                Grid.Row="1"
+                HorizontalContentAlignment="Center"
+                ItemsSource="{Binding NumbersResult}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" />
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button
+                    Width="170"
+                    Margin="0 0 20 0"
+                    Background="#79A9F5"
+                    BorderBrush="#79A9F5"
+                    Click="GoBack"
+                    Content="Voltar"
+                    Foreground="#BFFFFFFF"
+                    IsEnabled="{Binding IsReady}"
+                    Style="{StaticResource MaterialDesignRaisedLightButton}" />
+                <Button
+                    Width="170"
+                    Background="#79A9F5"
+                    BorderBrush="#79A9F5"
+                    Click="ExportarExcel"
+                    
+                    Foreground="#BFFFFFFF"
+                    IsEnabled="{Binding IsReady}"
+                    Style="{StaticResource MaterialDesignRaisedLightButton}" >
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Margin="0 0 10 0">Exportar</TextBlock>
+                        <md:PackIcon Kind="FileDocumentOutline" Width="20" Height="20"></md:PackIcon>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
+        </Grid>
+        <StackPanel
+            Grid.Row="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Orientation="Horizontal"
+            Visibility="{Binding IsShowingProgress, Converter={cvt:BooleanToVisibilityConverter}}">
+
+            <ProgressBar
+                Margin="0,0,20,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                IsIndeterminate="True"
+                Style="{StaticResource MaterialDesignCircularProgressBar}"
+                Value="35" />
+            <TextBlock
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontFamily="./Content/Fonts/Nunito-ExtraLight.ttf"
+                FontSize="20"
+                Text="Carregando Resultado..." />
+        </StackPanel>
     </Grid>
 </Page>
