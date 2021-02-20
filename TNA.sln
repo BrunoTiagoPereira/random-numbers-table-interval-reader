@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interface", "Interface\Inte
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{860BCE07-F313-47FE-862B-D4DFDE6595B0}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Installer", "Installer\Installer.vdproj", "{F3AF3E20-E841-4F60-924C-BA4BAB938A12}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,8 @@ Global
 		{860BCE07-F313-47FE-862B-D4DFDE6595B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{860BCE07-F313-47FE-862B-D4DFDE6595B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{860BCE07-F313-47FE-862B-D4DFDE6595B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3AF3E20-E841-4F60-924C-BA4BAB938A12}.Debug|Any CPU.ActiveCfg = Debug
+		{F3AF3E20-E841-4F60-924C-BA4BAB938A12}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
