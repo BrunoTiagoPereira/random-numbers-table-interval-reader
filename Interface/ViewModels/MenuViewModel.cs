@@ -44,6 +44,12 @@ namespace Interface.ViewModels
         private string _numbersAmount;
         public string NumbersAmount { get => _numbersAmount; set => _numbersAmount = value; }
 
+        private string _startRowIndex;
+        public string StartRowIndex { get => _startRowIndex; set => _startRowIndex = value; }
+
+        private string _startColumnIndex;
+        public string StartColumnIndex { get => _startColumnIndex; set => _startColumnIndex = value; }
+
         public string Error => string.Empty;
 
         public event PropertyChangedEventHandler PropertyChanged;

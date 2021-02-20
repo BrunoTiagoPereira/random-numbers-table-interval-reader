@@ -171,6 +171,8 @@ namespace Interface.Pages
             MenuViewModelValidation validator = new MenuViewModelValidation();
             ValidationResult result = validator.Validate(MenuModel);
             string errorMessage;
+            int startColumnIndex;
+            int startRowIndex;
 
 
             if (!result.IsValid)
@@ -188,8 +190,10 @@ namespace Interface.Pages
             try
             {
 
+                startColumnIndex = (!string.IsNullOrWhiteSpace(this.MenuModel.StartColumnIndex)) ? int.Parse(MenuModel.StartColumnIndex) : 0;
+                startRowIndex = (!string.IsNullOrWhiteSpace(this.MenuModel.StartRowIndex)) ? int.Parse(MenuModel.StartRowIndex) : 0;
 
-                e.Result =  new RNT(MenuModel.SelectedFile, int.Parse(MenuModel.NumbersAmount), int.Parse(MenuModel.Interval), int.Parse(MenuModel.ValueLimit));
+                e.Result =  new RNT(MenuModel.SelectedFile, int.Parse(MenuModel.NumbersAmount), int.Parse(MenuModel.Interval), int.Parse(MenuModel.ValueLimit),startColumnIndex,startRowIndex);
             }
             catch (InvalidDataException ex)
             {

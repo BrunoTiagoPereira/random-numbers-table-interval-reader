@@ -16,6 +16,16 @@ namespace TNA
 
             RNT.OnPopulate += Source_OnPopulate;
 
+            try
+            {
+                RNT source2 = new RNT(new FileInfo("init.txt"), 50, 4, 1050,startRowIndex:25);
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e.Message);
+            }
+            Console.ReadKey();
             RNT source = new RNT(new FileInfo("init.txt"),50,4,1050);
 
            

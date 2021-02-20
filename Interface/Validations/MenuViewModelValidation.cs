@@ -27,6 +27,7 @@ namespace Interface.Validations
                .Must(prop => !string.IsNullOrWhiteSpace(prop))
                .WithMessage("O valor limite não pode ser vazio");
 
+
             //Number Check
             RuleFor(prop => prop.Interval)
                 .Must(prop => Regex.IsMatch(prop, @"^\d{1,}$"))
@@ -43,6 +44,17 @@ namespace Interface.Validations
               .When(prop => !string.IsNullOrWhiteSpace(prop.ValueLimit))
                 .WithMessage("O valor limite deve ser um número");
 
+            RuleFor(prop => prop.StartColumnIndex)
+                .Must(prop => Regex.IsMatch(prop, @"^\d{1,}$"))
+                .When(prop => !string.IsNullOrWhiteSpace(prop.StartColumnIndex))
+                .WithMessage("A coluna inicial deve ser um número");
+
+            RuleFor(prop => prop.StartRowIndex)
+                .Must(prop => Regex.IsMatch(prop, @"^\d{1,}$"))
+                .When(prop => !string.IsNullOrWhiteSpace(prop.StartRowIndex))
+                .WithMessage("A linha inicial deve ser um número");
+
+
             //Length check
 
             RuleFor(prop => prop.Interval)
@@ -58,7 +70,7 @@ namespace Interface.Validations
             RuleFor(prop => prop.Interval)
                  .Must(prop=> int.Parse(prop)>0)
                  .When(prop => !string.IsNullOrWhiteSpace(prop.Interval)&&Regex.IsMatch(prop.Interval,@"^\d{1,}$"))
-                 .WithMessage("O intervalo deve ser um valor positivo");
+                 .WithMessage("O intervalo deve ter um valor positivo");
 
             RuleFor(prop => prop.ValueLimit)
                  .Must(prop => int.Parse(prop) > 0)
@@ -68,7 +80,17 @@ namespace Interface.Validations
             RuleFor(prop => prop.NumbersAmount)
                  .Must(prop => int.Parse(prop) > 0)
                .When(prop => !string.IsNullOrWhiteSpace(prop.NumbersAmount) && Regex.IsMatch(prop.NumbersAmount, @"^\d{1,}$"))
-               .WithMessage("A quantidade de números deve ser um valor positivo");
+               .WithMessage("A quantidade de números deve ter um valor positivo");
+
+            RuleFor(prop => prop.StartRowIndex)
+             .Must(prop => int.Parse(prop) > 0)
+             .When(prop => !string.IsNullOrWhiteSpace(prop.StartRowIndex) && Regex.IsMatch(prop.StartRowIndex, @"^\d{1,}$"))
+             .WithMessage("A linha inicial deve ter um valor positivo");
+
+            RuleFor(prop => prop.StartColumnIndex)
+                .Must(prop => int.Parse(prop) > 0)
+                .When(prop => !string.IsNullOrWhiteSpace(prop.StartColumnIndex) && Regex.IsMatch(prop.StartColumnIndex, @"^\d{1,}$"))
+                .WithMessage("A coluna inicial ter um valor positivo");
 
 
             RuleFor(prop => prop.SelectedFile)

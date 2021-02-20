@@ -29,7 +29,7 @@
             </StackPanel>
         </ControlTemplate>
     </Page.Resources>
-    <Grid Background="#7FC2E2F5">
+    <Grid Background="#C4DBE0">
         <Grid.RowDefinitions>
             <RowDefinition Height="20*" />
             <RowDefinition Height="80*" />
@@ -54,7 +54,7 @@
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button
                     Width="200"
-                    Margin="0,0,0,30"
+                    Margin="0,0,0,60"
                     Background="#79A9F5"
                     BorderBrush="#79A9F5"
                     Click="ChooseFile"
@@ -77,7 +77,7 @@
                     </StackPanel>
                 </Button>
                 <StackPanel
-                    Margin="30,0,30,0"
+                    Margin="30,0,30,60"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     IsEnabled="{Binding IsFileSelected}"
@@ -116,12 +116,46 @@
 
                 </StackPanel>
 
+                <StackPanel
+                    Margin="30,0,30,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    IsEnabled="{Binding IsFileSelected}"
+                    Orientation="Horizontal">
+                    <TextBox
+                        Width="200"
+                        Height="40"
+                        Margin="0,0,50,0"
+                        materialDesign:HintAssist.Hint="Coluna Inicial"
+                        ToolTip="Caso queira que a busca comece pela coluna informada. Deixe o campo vazio caso não queira."
+                        BorderBrush="#4B7BF5"
+                        MaxLength="9"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        Text="{Binding MenuModel.StartColumnIndex, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                        Validation.ErrorTemplate="{StaticResource ErrorTemplate}" />
+                    <TextBox
+                        Width="200"
+                        Height="40"
+                        Margin="0,0,50,0"
+                        materialDesign:HintAssist.Hint="Linha Inicial"
+                        ToolTip="Caso queira que a busca comece pela linha informada. Deixe o campo vazio caso não queira."
+                        
+                        BorderBrush="#4B7BF5"
+                        MaxLength="9"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        Text="{Binding MenuModel.StartRowIndex, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                        Validation.ErrorTemplate="{StaticResource ErrorTemplate}" />
+                 
+
+
+                </StackPanel>
+
             </StackPanel>
 
 
             <StackPanel
                 Grid.Row="1"
-                Margin="0,0,0,50"
+                Margin="0,0,0,0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center">
                 <Button

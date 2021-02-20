@@ -22,6 +22,8 @@ namespace Models
 
         public int Interval { get; set; }
         public int ValueLimit { get; set; }
+        public int StartColumnIndex { get; set; }
+        public int StartRowIndex { get; set; }
 
         public static event EventHandler<int> OnPopulate;
 
@@ -32,7 +34,7 @@ namespace Models
         /// <param name="numbersAmount">Amount of numbers to take</param>
         /// <param name="interval">Interval that will be used</param>
         /// <param name="valueLimit">Value limit to fetch numbers</param>
-        public RNT(FileInfo file, int numbersAmount, int interval, int valueLimit)
+        public RNT(FileInfo file, int numbersAmount, int interval, int valueLimit, int startColumnIndex =0, int startRowIndex = 0)
         {
 
             if (!File.Exists(file.FullName)) { throw new FileNotFoundException("The specified file doesn't exists."); }
@@ -50,6 +52,10 @@ namespace Models
             Interval = interval;
 
             ValueLimit = valueLimit;
+
+            StartColumnIndex = startColumnIndex;
+
+            StartRowIndex = startRowIndex;
 
 
 
@@ -134,65 +140,83 @@ namespace Models
 
         public List<int> GetNumbersList()
         {
-            return RecursiveSearch();
+            return Search();
         }
 
-        public List<int> GetNumbersList(int rowIndex, int columnIndex)
+
+        //private List<int> RecursiveSearch(int rowIndex = 0, int columnIndex = 0, List<int> result = null)
+        //{
+
+
+        //    if (result == null) result = new List<int>();
+
+        //    if (result.Count == NumbersLimitAmount) return result;
+
+        //    StringBuilder numberResult = new StringBuilder();
+
+        //    for (int i = 0; i < Interval; i++)
+        //    {
+
+        //        if (SourceTable.Columns.Count == columnIndex)
+        //        {
+        //            columnIndex = 0;
+        //            rowIndex += 1;
+        //        }
+
+        //        if (SourceTable.Rows.Count == rowIndex) rowIndex = 0;
+
+        //        numberResult.Append(SourceTable.Rows[rowIndex][columnIndex]);
+
+        //        columnIndex++;
+        //    }
+
+        //    if (int.Parse(numberResult.ToString()) <= ValueLimit) result.Add(int.Parse(numberResult.ToString()));
+
+        //    return Search(rowIndex,columnIndex,result);
+        //}
+        private List<int> Search( List<int> result = null)
         {
 
-            if (rowIndex > SourceTable.Rows.Count-1) return null;
-            if (columnIndex > SourceTable.Columns.Count-1) return null;
 
+            int rowIndex = this.StartRowIndex;
+            int columnIndex = this.StartColumnIndex;
 
-            return RecursiveSearch(rowIndex,columnIndex);
-        }
-
-        public List<int> GetNumbersList(int columnIndex)
-        {
-
-            if (columnIndex > SourceTable.Columns.Count - 1) return null;
-
-
-            return RecursiveSearch(columnIndex);
-        }
-
-        public List<int> GetNumbersList(byte rowIndex)
-        {
-
-            if (rowIndex > SourceTable.Rows.Count - 1) return null;
-
-
-            return RecursiveSearch(rowIndex);
-        }
-
-        private List<int> RecursiveSearch(int rowIndex = 0, int columnIndex = 0, List<int> result = null)
-        {
-            if (result == null) result = new List<int>();
-
-            if (result.Count == NumbersLimitAmount) return result;
+            if (result==null)result = new List<int>();
 
             StringBuilder numberResult = new StringBuilder();
 
-            for (int i = 0; i < Interval; i++)
+            while (result.Count != NumbersLimitAmount)
             {
-
-                if (SourceTable.Columns.Count == columnIndex)
+                for (int i = 0; i < Interval; i++)
                 {
-                    columnIndex = 0;
-                    rowIndex += 1;
+
+                    if (SourceTable.Columns.Count == columnIndex)
+                    {
+                        columnIndex = 0;
+                        rowIndex += 1;
+                    }
+
+                    if (SourceTable.Rows.Count == rowIndex) rowIndex = 0;
+
+                    numberResult.Append(SourceTable.Rows[rowIndex][columnIndex]);
+
+                    columnIndex++;
                 }
 
-                if (SourceTable.Rows.Count == rowIndex) rowIndex = 0;
+                if (int.Parse(numberResult.ToString()) <= ValueLimit) result.Add(int.Parse(numberResult.ToString()));
 
-                numberResult.Append(SourceTable.Rows[rowIndex][columnIndex]);
 
-                columnIndex++;
+                numberResult = new StringBuilder();
             }
 
-            if (int.Parse(numberResult.ToString()) <= ValueLimit) result.Add(int.Parse(numberResult.ToString()));
+            return result;
 
-            return RecursiveSearch(rowIndex,columnIndex,result);
+           
         }
 
     }
+
 }
+
+   
+

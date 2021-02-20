@@ -13,7 +13,7 @@
     mc:Ignorable="d"
     Unloaded="Unload">
 
-    <Grid Background="#7FC2E2F5">
+    <Grid Background="#C4DBE0">
         <Grid.RowDefinitions>
             <RowDefinition Height="20*" />
             <RowDefinition Height="60*" />

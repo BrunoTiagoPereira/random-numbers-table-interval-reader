@@ -28,7 +28,15 @@ namespace Models.Validations
 
             RuleFor(prop => prop)
                   .Must(rnt => !HasNegativeParameters(rnt))
-                  .WithMessage("intervalo, valor limite e quantidade de números devem ser positivos");
+                  .WithMessage("intervalo, valor limite, quantidade de números, coluna inicial e linha inicial devem ser positivos");
+
+            RuleFor(rnt => rnt)
+               .Must(rnt => rnt.SourceTable.Columns.Count > rnt.StartColumnIndex)
+               .WithMessage("O valor da coluna inicial deve ser menor que a quantidade de colunas da tabela");
+
+            RuleFor(rnt => rnt)
+              .Must(rnt => rnt.SourceTable.Rows.Count > rnt.StartRowIndex)
+              .WithMessage("O valor da linha inicial deve ser menor que a quantidade de linhas da tabela");
 
 
         }
@@ -79,7 +87,7 @@ namespace Models.Validations
 
         private bool HasNegativeParameters(RNT rnt)
         {
-            return (rnt.Interval <= 0) && (rnt.ValueLimit <= 0) && (rnt.NumbersLimitAmount <= 0);
+            return (rnt.Interval <= 0) && (rnt.ValueLimit <= 0) && (rnt.NumbersLimitAmount <= 0) && (rnt.StartColumnIndex <= 0) && (rnt.StartRowIndex <= 0);
         }
     }
 }
