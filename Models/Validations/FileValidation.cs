@@ -1,10 +1,5 @@
 ﻿using FluentValidation;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Models.Validations
 {
@@ -19,13 +14,6 @@ namespace Models.Validations
             RuleFor(prop => prop.Length)
                 .GreaterThan(0)
                 .WithMessage("O tamanho do arquivo deve ser maior que '0'");
-
-
-
-
-
-
-
         }
     }
 }

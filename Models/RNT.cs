@@ -6,13 +6,11 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Models
 {
     public class RNT
     {
-
         public DataTable SourceTable { get; set; }
 
         /// <summary>
@@ -34,9 +32,8 @@ namespace Models
         /// <param name="numbersAmount">Amount of numbers to take</param>
         /// <param name="interval">Interval that will be used</param>
         /// <param name="valueLimit">Value limit to fetch numbers</param>
-        public RNT(FileInfo file, int numbersAmount, int interval, int valueLimit, int startColumnIndex =0, int startRowIndex = 0)
+        public RNT(FileInfo file, int numbersAmount, int interval, int valueLimit, int startColumnIndex = 0, int startRowIndex = 0)
         {
-
             if (!File.Exists(file.FullName)) { throw new FileNotFoundException("The specified file doesn't exists."); }
 
             RNTValidation validator = new RNTValidation();
@@ -57,12 +54,9 @@ namespace Models
 
             StartRowIndex = startRowIndex;
 
-
-
             PopulateSourceTable(file);
 
             result = validator.Validate(this);
-
 
             if (!result.IsValid)
             {
@@ -71,10 +65,6 @@ namespace Models
                        .Aggregate((a, b) => $"{a}{Environment.NewLine}{b}");
                 throw new InvalidDataException(errorMessage);
             }
-
-
-
-
         }
 
         /// <summary>
@@ -96,9 +86,7 @@ namespace Models
             //Add enough columns to source table
             for (int i = 0; i < maxLineLength; i++) SourceTable.Columns.Add(new DataColumn(i.ToString(), typeof(string)));
 
-
-
-            //Populate the source transforming each position to char array and get the single numbers 
+            //Populate the source transforming each position to char array and get the single numbers
             for (int i = 0; i < fileLines.Count; i++)
             {
                 dr = SourceTable.NewRow();
@@ -111,10 +99,7 @@ namespace Models
                     .ToArray();
 
                 SourceTable.Rows.Add(dr);
-
             }
-
-
         }
 
         /// <summary>
@@ -131,23 +116,18 @@ namespace Models
             using (StreamReader reader = new StreamReader(new FileStream(file.FullName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite)))
             {
                 while ((data = reader.ReadLine()) != null) fileLines.Add(data);
-
             }
 
             return fileLines;
         }
-
 
         public List<int> GetNumbersList()
         {
             return Search();
         }
 
-
         //private List<int> RecursiveSearch(int rowIndex = 0, int columnIndex = 0, List<int> result = null)
         //{
-
-
         //    if (result == null) result = new List<int>();
 
         //    if (result.Count == NumbersLimitAmount) return result;
@@ -156,7 +136,6 @@ namespace Models
 
         //    for (int i = 0; i < Interval; i++)
         //    {
-
         //        if (SourceTable.Columns.Count == columnIndex)
         //        {
         //            columnIndex = 0;
@@ -174,14 +153,12 @@ namespace Models
 
         //    return Search(rowIndex,columnIndex,result);
         //}
-        private List<int> Search( List<int> result = null)
+        private List<int> Search(List<int> result = null)
         {
-
-
             int rowIndex = this.StartRowIndex;
             int columnIndex = this.StartColumnIndex;
 
-            if (result==null)result = new List<int>();
+            if (result == null) result = new List<int>();
 
             StringBuilder numberResult = new StringBuilder();
 
@@ -189,7 +166,6 @@ namespace Models
             {
                 for (int i = 0; i < Interval; i++)
                 {
-
                     if (SourceTable.Columns.Count == columnIndex)
                     {
                         columnIndex = 0;
@@ -205,18 +181,10 @@ namespace Models
 
                 if (int.Parse(numberResult.ToString()) <= ValueLimit) result.Add(int.Parse(numberResult.ToString()));
 
-
                 numberResult = new StringBuilder();
             }
 
             return result;
-
-           
         }
-
     }
-
 }
-
-   
-

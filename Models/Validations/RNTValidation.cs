@@ -1,17 +1,12 @@
 ﻿using FluentValidation;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Models.Validations
 {
-    public class RNTValidation: AbstractValidator<RNT>
+    public class RNTValidation : AbstractValidator<RNT>
     {
-
-
         public RNTValidation()
         {
             RuleFor(rnt => rnt)
@@ -37,28 +32,20 @@ namespace Models.Validations
             RuleFor(rnt => rnt)
               .Must(rnt => rnt.SourceTable.Rows.Count > rnt.StartRowIndex)
               .WithMessage("O valor da linha inicial deve ser menor que a quantidade de linhas da tabela");
-
-
         }
-
-
 
         private bool IsValidTable(RNT rnt)
         {
-
-
             for (int i = 0; i < rnt.SourceTable.Rows.Count; i++)
             {
                 if (rnt.SourceTable.Rows[i].ItemArray.Any(data => Regex.IsMatch(@"[A-Za-z]", data.ToString()))) return false;
             }
 
             return true;
-
         }
 
         private bool HasValidNumberLimit(RNT rnt)
         {
-
             StringBuilder numberResult = new StringBuilder();
 
             numberResult.Append(1);
@@ -66,7 +53,6 @@ namespace Models.Validations
             {
                 numberResult.Append(0);
             }
-
 
             if (rnt.ValueLimit < int.Parse(numberResult.ToString())) return false;
 
@@ -82,7 +68,6 @@ namespace Models.Validations
             }
 
             return numbersAmount > rnt.Interval;
-
         }
 
         private bool HasNegativeParameters(RNT rnt)

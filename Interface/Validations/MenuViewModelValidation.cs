@@ -1,12 +1,7 @@
 ﻿using FluentValidation;
 using Interface.ViewModels;
 using Models.Validations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Interface.Validations
 {
@@ -16,7 +11,7 @@ namespace Interface.Validations
         {
             //Null check
             RuleFor(prop => prop.Interval)
-                 .Must(prop =>!string.IsNullOrWhiteSpace(prop))
+                 .Must(prop => !string.IsNullOrWhiteSpace(prop))
                  .WithMessage("O intervalo não pode ser vazio");
 
             RuleFor(prop => prop.NumbersAmount)
@@ -26,7 +21,6 @@ namespace Interface.Validations
             RuleFor(prop => prop.ValueLimit)
                .Must(prop => !string.IsNullOrWhiteSpace(prop))
                .WithMessage("O valor limite não pode ser vazio");
-
 
             //Number Check
             RuleFor(prop => prop.Interval)
@@ -40,7 +34,7 @@ namespace Interface.Validations
                 .WithMessage("A quantidade de números deve ser um campo numérico");
 
             RuleFor(prop => prop.ValueLimit)
-              .Must(prop=> Regex.IsMatch(prop, @"^\d{1,}$"))
+              .Must(prop => Regex.IsMatch(prop, @"^\d{1,}$"))
               .When(prop => !string.IsNullOrWhiteSpace(prop.ValueLimit))
                 .WithMessage("O valor limite deve ser um número");
 
@@ -53,7 +47,6 @@ namespace Interface.Validations
                 .Must(prop => Regex.IsMatch(prop, @"^\d{1,}$"))
                 .When(prop => !string.IsNullOrWhiteSpace(prop.StartRowIndex))
                 .WithMessage("A linha inicial deve ser um número");
-
 
             //Length check
 
@@ -68,8 +61,8 @@ namespace Interface.Validations
             //Greater than 0 check
 
             RuleFor(prop => prop.Interval)
-                 .Must(prop=> int.Parse(prop)>0)
-                 .When(prop => !string.IsNullOrWhiteSpace(prop.Interval)&&Regex.IsMatch(prop.Interval,@"^\d{1,}$"))
+                 .Must(prop => int.Parse(prop) > 0)
+                 .When(prop => !string.IsNullOrWhiteSpace(prop.Interval) && Regex.IsMatch(prop.Interval, @"^\d{1,}$"))
                  .WithMessage("O intervalo deve ter um valor positivo");
 
             RuleFor(prop => prop.ValueLimit)
@@ -92,11 +85,8 @@ namespace Interface.Validations
                 .When(prop => !string.IsNullOrWhiteSpace(prop.StartColumnIndex) && Regex.IsMatch(prop.StartColumnIndex, @"^\d{1,}$"))
                 .WithMessage("A coluna inicial ter um valor positivo");
 
-
             RuleFor(prop => prop.SelectedFile)
                 .SetValidator(new FileValidation());
-
-           
         }
     }
 }

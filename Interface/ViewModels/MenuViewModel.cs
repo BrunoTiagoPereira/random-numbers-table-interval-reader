@@ -1,13 +1,8 @@
 ﻿using FluentValidation.Results;
 using Interface.Validations;
-using Models.Validations;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Interface.ViewModels
 {
@@ -23,15 +18,15 @@ namespace Interface.ViewModels
 
                 ValidationResult result = validator.Validate(this);
 
-                if (!result.IsValid&& result.Errors.Any(err => err.PropertyName == columnName))
+                if (!result.IsValid && result.Errors.Any(err => err.PropertyName == columnName))
                 {
                     error = result.Errors.Where(err => err.PropertyName == columnName).Select(err => err.ErrorMessage).FirstOrDefault();
                 }
 
-
                 return error;
             }
         }
+
         private FileInfo _selectedFile;
         public FileInfo SelectedFile { get => _selectedFile; set => _selectedFile = value; }
 

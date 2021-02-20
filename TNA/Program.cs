@@ -5,35 +5,27 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace TNA
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-
             RNT.OnPopulate += Source_OnPopulate;
 
             try
             {
-                RNT source2 = new RNT(new FileInfo("init.txt"), 50, 4, 1050,startRowIndex:25);
+                RNT source2 = new RNT(new FileInfo("init.txt"), 50, 4, 1050, startRowIndex: 25);
             }
             catch (Exception e)
             {
-
                 Console.WriteLine(e.Message);
             }
             Console.ReadKey();
-            RNT source = new RNT(new FileInfo("init.txt"),50,4,1050);
-
-           
+            RNT source = new RNT(new FileInfo("init.txt"), 50, 4, 1050);
 
             List<int> teste = source.GetNumbersList();
-
-
-           
 
             string fileText = File.ReadAllText("init.txt");
 
@@ -48,7 +40,6 @@ namespace TNA
             char[] array = fileText.ToCharArray();
 
             List<string> result = new List<string>();
-
 
             Console.WriteLine("Intervalo:");
 
@@ -66,23 +57,13 @@ namespace TNA
 
             amountInLine = int.Parse(Console.ReadLine());
 
-
             DataTable dt = new DataTable();
-
-            
 
             result = GetNumeros(interval, numbersLimit, valueLimit, array);
 
             Console.WriteLine(result.Aggregate((a, b) => $"{a}{Environment.NewLine}{b}"));
 
             Console.ReadKey();
- 
-
-
-
-
-
-
         }
 
         private static void Source_OnPopulate(object sender, int e)
@@ -92,7 +73,6 @@ namespace TNA
 
         private static List<string> GetNumeros(int interval, int numbersLimit, int valueLimit, char[] array, int index = 0, List<string> numbersList = null)
         {
-
             int newIndex = index + interval;
 
             if (numbersList == null) numbersList = new List<string>();
@@ -101,19 +81,14 @@ namespace TNA
 
             StringBuilder numberResult = new StringBuilder();
 
-
-
             for (int i = index; i < newIndex; i++)
             {
                 numberResult.Append(array[i]);
-
             }
 
             if (int.Parse(numberResult.ToString()) <= valueLimit) numbersList.Add(numberResult.ToString());
 
             return GetNumeros(interval, numbersLimit, valueLimit, array, newIndex, numbersList);
-
-
         }
     }
 }

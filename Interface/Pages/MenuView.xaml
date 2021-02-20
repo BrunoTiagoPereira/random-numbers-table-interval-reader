@@ -35,7 +35,6 @@
             <RowDefinition Height="80*" />
         </Grid.RowDefinitions>
 
-
         <TextBlock
             Grid.Row="0"
             HorizontalAlignment="Center"
@@ -112,8 +111,6 @@
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                         Text="{Binding MenuModel.ValueLimit, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                         Validation.ErrorTemplate="{StaticResource ErrorTemplate}" />
-
-
                 </StackPanel>
 
                 <StackPanel
@@ -139,19 +136,14 @@
                         Margin="0,0,50,0"
                         materialDesign:HintAssist.Hint="Linha Inicial"
                         ToolTip="Caso queira que a busca comece pela linha informada. Deixe o campo vazio caso não queira."
-                        
+
                         BorderBrush="#4B7BF5"
                         MaxLength="9"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                         Text="{Binding MenuModel.StartRowIndex, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
                         Validation.ErrorTemplate="{StaticResource ErrorTemplate}" />
-                 
-
-
                 </StackPanel>
-
             </StackPanel>
-
 
             <StackPanel
                 Grid.Row="1"
@@ -167,7 +159,6 @@
                     Foreground="#BFFFFFFF"
                     IsEnabled="{Binding IsFileSelected}"
                     Style="{StaticResource MaterialDesignRaisedLightButton}" />
-
             </StackPanel>
         </Grid>
 
@@ -193,12 +184,5 @@
                 Criando e Carregando TNA...
             </TextBlock>
         </StackPanel>
-
-
-
-
     </Grid>
-
-
-
 </Page>

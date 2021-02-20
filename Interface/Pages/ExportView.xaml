@@ -1,12 +1,11 @@
 ﻿<Page
     x:Class="Interface.Pages.ExportView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:cvt="clr-namespace:Interface.Converters"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:Interface.Pages"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:cvt="clr-namespace:Interface.Converters"
     Title="ExportView"
     d:DesignHeight="450"
     d:DesignWidth="800"
@@ -28,8 +27,6 @@
                 FontSize="25">
                 Exportar
             </TextBlock>
-
-
         </StackPanel>
 
         <Grid Grid.Row="1" Visibility="{Binding CanShowOptions, Converter={cvt:BooleanToVisibilityConverter}}">
@@ -73,7 +70,6 @@
                 FontFamily="./Content/Fonts/Nunito-ExtraLight.ttf"
                 FontSize="20"
                 Text="Exportando Resultado..." />
-
         </StackPanel>
 
         <Button
@@ -89,14 +85,11 @@
 
         <md:Snackbar
             Grid.Row="2"
-           
+
             Background="#BF002FA7"
             BorderBrush="White"
             BorderThickness="0.5"
             Foreground="White"
             MessageQueue="{Binding MessageQueue}" />
-
-
-
     </Grid>
 </Page>
