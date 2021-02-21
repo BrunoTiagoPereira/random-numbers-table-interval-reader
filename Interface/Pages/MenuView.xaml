@@ -8,10 +8,10 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Menu"
-    d:DesignHeight="450"
+    d:DesignHeight="600"
     d:DesignWidth="800"
-    mc:Ignorable="d"
-    Unloaded="UnLoad">
+    Unloaded="UnLoad"
+    mc:Ignorable="d">
     <Page.Resources>
         <ControlTemplate x:Key="ErrorTemplate">
             <StackPanel Orientation="Vertical">
@@ -51,30 +51,48 @@
             </Grid.RowDefinitions>
 
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button
-                    Width="200"
+                <StackPanel
                     Margin="0,0,0,60"
-                    Background="#79A9F5"
-                    BorderBrush="#79A9F5"
-                    Click="ChooseFile"
-                    Foreground="#BFFFFFFF"
-                    Style="{StaticResource MaterialDesignRaisedLightButton}">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock
-                            Margin="0,0,10,0"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontSize="15">
-                            Escolher Arquivo
-                        </TextBlock>
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
+                    <Button
+                        Width="200"
+                        Margin="40,0,10,0"
+                        Background="#79A9F5"
+                        BorderBrush="#79A9F5"
+                        Click="ChooseFile"
+                        Foreground="#BFFFFFFF"
+                        Style="{StaticResource MaterialDesignRaisedLightButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Margin="0,0,10,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="15">
+                                Escolher Arquivo
+                            </TextBlock>
+                            <materialDesign:PackIcon
+                                Width="25"
+                                Height="25"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Kind="Upload" />
+                        </StackPanel>
+                    </Button>
+                    <StackPanel>
                         <materialDesign:PackIcon
-                            Width="25"
-                            Height="25"
+                            Width="30"
+                            Height="30"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            Kind="Upload" />
+                            Background="Transparent"
+                            Foreground="#7F000000"
+                            Kind="InformationOutline"
+                            ToolTip="{Binding InformationToolTip}" />
                     </StackPanel>
-                </Button>
+                </StackPanel>
+
                 <StackPanel
                     Margin="30,0,30,60"
                     HorizontalAlignment="Center"
@@ -124,23 +142,22 @@
                         Height="40"
                         Margin="0,0,50,0"
                         materialDesign:HintAssist.Hint="Coluna Inicial"
-                        ToolTip="Caso queira que a busca comece pela coluna informada. Deixe o campo vazio caso não queira."
                         BorderBrush="#4B7BF5"
                         MaxLength="9"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                         Text="{Binding MenuModel.StartColumnIndex, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                        ToolTip="Caso queira que a busca comece pela coluna informada. Deixe o campo vazio caso não queira."
                         Validation.ErrorTemplate="{StaticResource ErrorTemplate}" />
                     <TextBox
                         Width="200"
                         Height="40"
                         Margin="0,0,50,0"
                         materialDesign:HintAssist.Hint="Linha Inicial"
-                        ToolTip="Caso queira que a busca comece pela linha informada. Deixe o campo vazio caso não queira."
-
                         BorderBrush="#4B7BF5"
                         MaxLength="9"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                         Text="{Binding MenuModel.StartRowIndex, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                        ToolTip="Caso queira que a busca comece pela linha informada. Deixe o campo vazio caso não queira."
                         Validation.ErrorTemplate="{StaticResource ErrorTemplate}" />
                 </StackPanel>
             </StackPanel>

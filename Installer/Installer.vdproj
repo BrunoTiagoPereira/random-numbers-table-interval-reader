@@ -39,6 +39,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_B446F35F3BA047278EE4F92A03681FE7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_BCB147AC2D79F01DD52E3500C071E6CA"
         "OwnerKey" = "8:_C4A27AC095394F59A66FC57B6DE57698"
         "MsmSig" = "8:_UNDEFINED"
@@ -65,12 +71,6 @@
         {
         "MsmKey" = "8:_E80C1529A52118089C46EEF8C18F3D64"
         "OwnerKey" = "8:_C4A27AC095394F59A66FC57B6DE57698"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E80C1529A52118089C46EEF8C18F3D64"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -109,6 +109,12 @@
         "OwnerKey" = "8:_283640FE4D65594711CD05005509208E"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_E80C1529A52118089C46EEF8C18F3D64"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -117,7 +123,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\Installer.msi"
+        "OutputFilename" = "8:Debug\\GeradorTNA.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -127,6 +133,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -143,6 +165,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -263,6 +293,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B446F35F3BA047278EE4F92A03681FE7"
+            {
+            "SourcePath" = "8:..\\Interface\\Content\\Assets\\icon.ico"
+            "TargetName" = "8:icon.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_D08C84B783A8472A9AF4E68C9AEAE9E8"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BCB147AC2D79F01DD52E3500C071E6CA"
@@ -415,7 +465,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Gerador TNA"
         "ProductCode" = "8:{E977D6BE-5303-4D10-8376-A6F96A860CD8}"
-        "PackageCode" = "8:{DCA2B924-E9F3-4C6C-B7B9-AC4F68DD4A1B}"
+        "PackageCode" = "8:{84F4981C-6E62-48FE-BF09-BC5072658A96}"
         "UpgradeCode" = "8:{52FDA977-CB8B-4F9B-B0CC-219D1C74CA05}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -432,7 +482,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:Gerador TNA"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:"
+        "ARPPRODUCTICON" = "8:_B446F35F3BA047278EE4F92A03681FE7"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -535,6 +585,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C2EB490C0D67454C8F5C7A838B36DE49"
+            {
+            "Name" = "8:Gerador TNA"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_C4A27AC095394F59A66FC57B6DE57698"
+            "Folder" = "8:_40A5E1D746AD49FFA22FCF2766676658"
+            "WorkingFolder" = "8:_D08C84B783A8472A9AF4E68C9AEAE9E8"
+            "Icon" = "8:_B446F35F3BA047278EE4F92A03681FE7"
+            "Feature" = "8:"
+            }
         }
         "UserInterface"
         {
@@ -936,7 +1000,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_C4A27AC095394F59A66FC57B6DE57698"
             {
-            "SourcePath" = "8:..\\Interface\\obj\\Debug\\Interface.exe"
+            "SourcePath" = "8:..\\Interface\\obj\\Debug\\Gerador TNA.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_D08C84B783A8472A9AF4E68C9AEAE9E8"

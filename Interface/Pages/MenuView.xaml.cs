@@ -71,6 +71,20 @@ namespace Interface.Pages
 
         #endregion IsShowingProgressProperty
 
+        #region InformationToolTipProperty
+
+        public string InformationToolTip
+        {
+            get { return (string)GetValue(InformationToolTipProperty); }
+            set { SetValue(InformationToolTipProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for InformationToolTip.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty InformationToolTipProperty =
+            DependencyProperty.Register("InformationToolTip", typeof(string), typeof(MenuView), new PropertyMetadata(""));
+
+        #endregion InformationToolTipProperty
+
         public MenuView(IFrameNavigation frameWindow)
         {
             InitializeComponent();
@@ -80,6 +94,8 @@ namespace Interface.Pages
             this.FrameWindow = frameWindow;
 
             DataContext = this;
+
+            InformationToolTip = GetInformationToolTip();
 
             InstanceBackgroundWorker();
         }
@@ -179,6 +195,13 @@ namespace Interface.Pages
         private void ShowResults(RNT rnt)
         {
             FrameWindow.Frame.Navigate(new GridView(FrameWindow, rnt));
+        }
+
+        private string GetInformationToolTip()
+        {
+            string information = "Exemplo Arquivo:\n1234567897897\n2132121321231\n1213213213213\n1234567897897\n4567821321455";
+
+            return information;
         }
 
         private void UnLoad(object sender, RoutedEventArgs e)
